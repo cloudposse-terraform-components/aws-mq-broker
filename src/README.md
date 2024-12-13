@@ -5,7 +5,7 @@ tags:
   - provider/aws
 ---
 
-# Component: `mq`
+# Component: `mq-broker`
 
 This component is responsible for provisioning an AmazonMQ broker and corresponding security group.
 
