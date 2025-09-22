@@ -188,3 +188,10 @@ variable "use_aws_owned_key" {
   default     = true
   description = "Boolean to enable an AWS owned Key Management Service (KMS) Customer Master Key (CMK) for Amazon MQ encryption that is not in your account"
 }
+
+variable "allowed_security_groups" {
+  type        = list(string)
+  default     = []
+  description = "List of Security Group IDs to be allowed to connect to the worker nodes"
+}
+
