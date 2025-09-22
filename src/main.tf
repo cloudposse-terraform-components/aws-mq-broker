@@ -2,8 +2,6 @@ locals {
   eks_outputs = module.eks.outputs
   vpc_outputs = module.vpc.outputs
 
-  eks_cluster_managed_security_group_id = local.eks_outputs.eks_cluster_managed_security_group_id
-
   vpc_id             = local.vpc_outputs.vpc_id
   private_subnet_ids = local.vpc_outputs.private_subnet_ids
 
