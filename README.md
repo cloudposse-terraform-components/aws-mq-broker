@@ -33,6 +33,33 @@
 This component is responsible for provisioning an AmazonMQ broker and the corresponding security group.
 
 
+### Migrate `v1` to `v2`
+
+`EKS` component dependency removed. Instead of pulling security groups from EKS remote state, pass it as `var.allowed_security_groups`.
+If you are using Atmos, read [atmos shared data](https://atmos.tools/core-concepts/share-data/) manual.
+
+```yaml
+components:
+  terraform:
+    mq-broker:
+      vars:
+        enabled: true
+        apply_immediately: true
+        auto_minor_version_upgrade: true
+        deployment_mode: "ACTIVE_STANDBY_MULTI_AZ"
+        engine_type: "ActiveMQ"
+        engine_version: "5.15.14"
+        host_instance_type: "mq.t3.micro"
+        publicly_accessible: false
+        general_log_enabled: true
+        audit_log_enabled: true
+        encryption_enabled: true
+        use_aws_owned_key: true
+        allowed_security_groups: 
+          - '{{ (atmos.Component "eks" .stack).outputs.eks_cluster_managed_security_group_id }}'
+```
+
+
 > [!TIP]
 > #### 👽 Use Atmos with Terraform
 > Cloud Posse uses [`atmos`](https://atmos.tools) to easily orchestrate multiple environments using Terraform. <br/>
@@ -108,7 +135,6 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_eks"></a> [eks](#module\_eks) | cloudposse/stack-config/yaml//modules/remote-state | 1.8.0 |
 | <a name="module_iam_roles"></a> [iam\_roles](#module\_iam\_roles) | ../account-map/modules/iam-roles | n/a |
 | <a name="module_mq_broker"></a> [mq\_broker](#module\_mq\_broker) | cloudposse/mq-broker/aws | 3.5.0 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
