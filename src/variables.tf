@@ -192,6 +192,6 @@ variable "use_aws_owned_key" {
 variable "allowed_security_groups" {
   type        = list(string)
   default     = []
-  description = "List of Security Group IDs to be allowed to connect to the worker nodes"
+  description = "List of Security Group IDs to be allowed to connect to the mq broker"
 }
 
