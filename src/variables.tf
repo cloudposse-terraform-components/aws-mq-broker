@@ -188,3 +188,4 @@ variable "use_aws_owned_key" {
   default     = true
   description = "Boolean to enable an AWS owned Key Management Service (KMS) Customer Master Key (CMK) for Amazon MQ encryption that is not in your account"
 }
+

@@ -4,6 +4,36 @@ github_repo: "cloudposse-terraform-components/aws-mq-broker"
 # Short description of this project
 description: |-
   This component is responsible for provisioning an AmazonMQ broker and the corresponding security group.
+
+
+  ### Migrate `v1` to `v2`
+
+  `EKS` component dependency removed. Instead of pulling security groups from EKS remote state, pass it as `var.allowed_security_groups`.
+  If you are using Atmos, read [atmos shared data](https://atmos.tools/core-concepts/share-data/) manual.
+
+  ```yaml
+  components:
+    terraform:
+      mq-broker:
+        vars:
+          enabled: true
+          apply_immediately: true
+          auto_minor_version_upgrade: true
+          deployment_mode: "ACTIVE_STANDBY_MULTI_AZ"
+          engine_type: "ActiveMQ"
+          engine_version: "5.15.14"
+          host_instance_type: "mq.t3.micro"
+          publicly_accessible: false
+          general_log_enabled: true
+          audit_log_enabled: true
+          encryption_enabled: true
+          use_aws_owned_key: true
+          allowed_security_groups: 
+            - '{{ (atmos.Component "eks" .stack).outputs.eks_cluster_managed_security_group_id }}'
+  ```
+
+
+  
 usage: |-
   **Stack Level**: Regional
 

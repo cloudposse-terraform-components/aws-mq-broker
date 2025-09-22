@@ -2,8 +2,6 @@ locals {
   eks_outputs = module.eks.outputs
   vpc_outputs = module.vpc.outputs
 
-  eks_cluster_managed_security_group_id = local.eks_outputs.eks_cluster_managed_security_group_id
-
   vpc_id             = local.vpc_outputs.vpc_id
   private_subnet_ids = local.vpc_outputs.private_subnet_ids
 
@@ -17,7 +15,7 @@ module "mq_broker" {
 
   vpc_id                  = local.vpc_id
   subnet_ids              = local.subnet_ids
-  allowed_security_groups = [local.eks_cluster_managed_security_group_id]
+  allowed_security_groups = var.allowed_security_groups
 
   apply_immediately            = var.apply_immediately
   auto_minor_version_upgrade   = var.auto_minor_version_upgrade
