@@ -11,7 +11,7 @@ locals {
 
 module "mq_broker" {
   source  = "cloudposse/mq-broker/aws"
-  version = "3.5.0"
+  version = "3.5.1"
 
   vpc_id                  = local.vpc_id
   subnet_ids              = local.subnet_ids
