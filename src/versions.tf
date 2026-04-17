@@ -6,10 +6,6 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 4.0, < 6.0.0"
     }
-    template = {
-      source  = "cloudposse/template"
-      version = ">= 2.2"
-    }
     local = {
       source  = "hashicorp/local"
       version = ">= 2.4"
