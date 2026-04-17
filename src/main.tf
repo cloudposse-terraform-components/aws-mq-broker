@@ -1,5 +1,4 @@
 locals {
-  eks_outputs = module.eks.outputs
   vpc_outputs = module.vpc.outputs
 
   vpc_id             = local.vpc_outputs.vpc_id
