@@ -111,6 +111,16 @@ variable "allowed_cidr_blocks" {
   description = "List of CIDR blocks that are allowed ingress to the broker's Security Group created in the module"
 }
 
+variable "allow_all_egress" {
+  type        = bool
+  default     = true
+  description = <<-EOT
+    If `true`, the created security group will allow egress on all ports and protocols to all IP addresses.
+    If `false`, no egress rules will be created by this module; egress must be configured via other means
+    (e.g. additional security group rules) or all outbound traffic will be denied.
+    EOT
+}
+
 variable "overwrite_ssm_parameter" {
   type        = bool
   default     = true

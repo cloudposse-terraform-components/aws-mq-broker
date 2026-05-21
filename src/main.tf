@@ -16,6 +16,7 @@ module "mq_broker" {
   vpc_id                  = local.vpc_id
   subnet_ids              = local.subnet_ids
   allowed_security_groups = var.allowed_security_groups
+  allow_all_egress        = var.allow_all_egress
 
   apply_immediately            = var.apply_immediately
   auto_minor_version_upgrade   = var.auto_minor_version_upgrade
