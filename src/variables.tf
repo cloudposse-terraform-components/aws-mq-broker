@@ -18,7 +18,7 @@ variable "auto_minor_version_upgrade" {
 variable "deployment_mode" {
   type        = string
   default     = "ACTIVE_STANDBY_MULTI_AZ"
-  description = "The deployment mode of the broker. Supported: SINGLE_INSTANCE, ACTIVE_STANDBY_MULTI_AZ, and CLUSTER_MULTI_AZ"
+  description = "The deployment mode of the broker. Supported per engine: ActiveMQ -> SINGLE_INSTANCE | ACTIVE_STANDBY_MULTI_AZ; RabbitMQ -> SINGLE_INSTANCE | CLUSTER_MULTI_AZ"
 }
 
 variable "engine_type" {
